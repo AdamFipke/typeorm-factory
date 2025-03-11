@@ -29,11 +29,6 @@
     "test:watch": "yarn test --watch",
     "prepare": "tsc -p tsconfigBuild.json"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsc --noEmit && lint-staged"
-    }
-  },
   "lint-staged": {
     "server/**/*.ts": [
       "yarn lint --fix",
