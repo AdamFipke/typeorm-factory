@@ -1,5 +1,0 @@
-*
-!build/**/*
-!package.json
-!*.md
-!LICENSE
