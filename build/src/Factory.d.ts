@@ -1,4 +1,3 @@
-import { DataSource } from 'typeorm';
 import { AssocManyAttribute } from './AssocManyAttribute';
 import { AssocOneAttribute } from './AssocOneAttribute';
 import { FactoryAttribute } from './FactoryAttribute';
@@ -10,15 +9,15 @@ export type IConstructable<T> = new () => T;
 /**
  * Attribute type
  */
-export type Attr<U> = [
+export type Attr<U extends Record<string, any>> = [
     keyof U,
     Sequence<U[keyof U]> | AssocManyAttribute<any> | AssocOneAttribute<U[keyof U]> | FactoryAttribute<any>
 ];
-export type Attrs<U> = Array<Attr<U>>;
+export type Attrs<U extends Record<string, any>> = Array<Attr<U>>;
 /**
  * Factory defines attributes, sequences and associations for an Entity
  */
-export declare class Factory<T extends {}> {
+export declare class Factory<T extends Record<string, any>> {
     /**
      * typeorm Entity class
      */
@@ -30,7 +29,7 @@ export declare class Factory<T extends {}> {
     private datasource;
     private privateRepository;
     /** constructor */
-    constructor(Entity: IConstructable<T>, datasource: DataSource, attrs?: Attrs<T>);
+    constructor(Entity: IConstructable<T>, datasource: any, attrs?: Attrs<T>);
     private get repository();
     /**
      * Clones current factory definition
@@ -51,7 +50,7 @@ export declare class Factory<T extends {}> {
     /**
      * association generator for one hasMany
      */
-    assocOne<K extends keyof T>(name: K, factory: Factory<T[K]>): Factory<T>;
+    assocOne<K extends keyof T>(name: K, factory: Factory<T[K] & Record<string, any>>): Factory<T>;
     /**
      * builds an instance of Entity
      */
