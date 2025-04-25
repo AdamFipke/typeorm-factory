@@ -1,6 +1,6 @@
 {
   "name": "typeorm-factory",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "A factory library for typeorm",
   "main": "build/index.js",
   "typings": "build/index.d.ts",
